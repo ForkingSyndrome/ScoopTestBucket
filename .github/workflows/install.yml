@@ -19,7 +19,9 @@ jobs:
       - name: Install Scoop
         run: irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-qtsmxorxuqnk/install.ps1 | iex
       - name: Test Scoop
-        run: scoop help
+        run: |
+          $env:PATH="$env:USERPROFILE\scoop\shims:$env:PATH"
+          scoop help
       - name: Install Scoop 2
         run: |
           $env:PATH="$env:USERPROFILE"
