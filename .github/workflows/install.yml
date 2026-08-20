@@ -1,0 +1,26 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test Install
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        shell: [powershell, pwsh]
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    steps:
+      - name: Install Scoop
+        run: irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-qtsmxorxuqnk/install.ps1 | iex
+      - name: Test Scoop
+        run: scoop help
+      - name: Install Scoop 2
+        run: |
+          $env:PATH="$env:USERPROFILE"
+          irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-qtsmxorxuqnk/install.ps1 | iex
