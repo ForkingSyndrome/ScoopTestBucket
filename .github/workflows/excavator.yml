@@ -16,8 +16,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      # Invalidation every day
+      - name: Cache Epoch
+        id: cache_epoch
+        shell: bash
+        run: echo "day=$(date -u +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+      - name: Restore Cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
+        with:
+          path: ~/scoop
+          key: Scoop-${{ runner.os }}-${{ steps.cache_epoch.outputs.day }}
       - name: Excavate
-        uses: chawyehsu/scoop-githubactions@push-vrtrwozysvxn
+        uses: chawyehsu/scoop-githubactions@push-loxxnxntqmlz
         env:
           SKIP_UPDATED: 1
           SCOOP_BRANCH: develop
