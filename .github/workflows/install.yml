@@ -17,16 +17,20 @@ jobs:
         shell: ${{ matrix.shell }}
     steps:
       - name: Install Scoop
+        run: |
+          irm https://get.scoop.sh | iex
+          scoop help
+      - name: Install Scoop 2
         run: irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-qtsmxorxuqnk/install.ps1 | iex
       - name: Test Scoop
         run: |
           $env:PATH="$env:USERPROFILE\scoop\shims;$env:PATH"
           scoop help
-      - name: Install Scoop 2
+      - name: Install Scoop 3
         run: |
           $env:PATH="$env:USERPROFILE"
           irm get.scoop.sh | iex
-      - name: Install Scoop 3
+      - name: Install Scoop 4
         run: |
           $env:PATH="$env:USERPROFILE"
           irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-qtsmxorxuqnk/install.ps1 | iex
