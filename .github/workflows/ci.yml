@@ -12,6 +12,21 @@ permissions:
   contents: read
 
 jobs:
+  test_scoop:
+    name: Test Scoop
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        shell: [powershell, pwsh]
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    steps:
+      - name: Install Scoop
+        run: |
+           irm get.scoop.sh | iex
+           scoop help
+
   test:
     name: Test
     runs-on: windows-latest
