@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Install Scoop
         run: |
-          irm https://get.scoop.sh | iex
+          irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-kosykwzmqqlo/install.ps1 | iex
           scoop help
       - name: Install Scoop 2
         run: irm https://raw.githubusercontent.com/chawyehsu/Install/refs/heads/push-qtsmxorxuqnk/install.ps1 | iex
